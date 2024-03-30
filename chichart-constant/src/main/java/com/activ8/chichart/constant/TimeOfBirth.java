@@ -1,0 +1,29 @@
+package com.activ8.chichart.constant;
+
+public enum TimeOfBirth {
+
+    TIME_12AM_1AM,
+    TIME_1AM_2AM,
+    TIME_2AM_3AM,
+    TIME_3AM_4AM,
+    TIME_4AM_5AM,
+    TIME_5AM_6AM,
+    TIME_6AM_7AM,
+    TIME_7AM_8AM,
+    TIME_8AM_9AM,
+    TIME_9AM_10AM,
+    TIME_10AM_11AM,
+    TIME_11AM_12PM,
+    TIME_12PM_1PM,
+    TIME_1PM_2PM,
+    TIME_2PM_3PM,
+    TIME_3PM_4PM,
+    TIME_4PM_5PM,
+    TIME_5PM_6PM,
+    TIME_6PM_7PM,
+    TIME_7PM_8PM,
+    TIME_8PM_9PM,
+    TIME_9PM_10PM,
+    TIME_10PM_11PM,
+    TIME_11PM_12AM
+}

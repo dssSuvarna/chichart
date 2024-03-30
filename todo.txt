@@ -1,0 +1,12 @@
+after entering info and going back - need to be directed to main activity. some sort of 'onfocus' event
+
+best hours - formatting of page
+firebase?? - examine data storage options. eg dob/time/gender/email
+push notifications - would need to be online and have an account.
+
+google developer account. developer@chichart.com.au ?
+
+low
+---
+earth branches - sometimes different calcs?
+symbol - what does 'branch same' mean?

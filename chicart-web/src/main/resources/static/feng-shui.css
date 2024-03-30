@@ -1,0 +1,11 @@
+.good, .very-good {
+    color: forestgreen;
+}
+
+.average {
+    color: black;
+}
+
+.bad, .very-bad {
+    color: firebrick;
+}

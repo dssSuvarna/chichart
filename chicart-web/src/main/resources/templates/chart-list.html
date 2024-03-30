@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Four Pillars Chart</title>
+
+  <link href="webjars/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/feng-shui.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">Personal Details</div>
+        <div class="panel-body">
+          <table class="table">
+            <tbody>
+            <tr>
+              <th>Date of Birth</th>
+              <td th:text="${chartCommand.dob}"></td>
+            </tr>
+            <tr>
+              <th>Time of Birth</th>
+              <td th:text="${chartCommand.time}"></td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td th:text="${chartCommand.gender}"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Lunar Method</div>
+        <div class="panel-body">
+          <p th:text="${lunarMethod}"></p>
+        </div>
+
+        <div class="panel-heading">Ranked Elements</div>
+        <div class="panel-body">
+          <ul class="list-inline">
+            <th:block th:each="element : ${lunarMethodElements}">
+              <li style="padding-left: 5px; padding-right: 5px;" th:text="${element}"></li>
+            </th:block>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-5">
+      <div class="panel panel-default">
+        <div class="panel-heading">Four Pillars Chart</div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Hour</th>
+                <th>Day</th>
+                <th>Month</th>
+                <th>Year</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Heavenly Stems</th>
+                <td th:text="${hourPillar != null} ? ${hourPillar.stemType}"></td>
+                <td th:text="${dayPillar.stemType}"></td>
+                <td th:text="${monthPillar.stemType}"></td>
+                <td th:text="${yearPillar.stemType}"></td>
+              </tr>
+              <tr>
+                <th>Earthly Branches</th>
+                <td th:text="${hourPillar != null} ? ${hourPillar.branchType}"></td>
+                <td th:text="${dayPillar.branchType}"></td>
+                <td th:text="${monthPillar.branchType}"></td>
+                <td th:text="${yearPillar.branchType}"></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">Fate Cycles</div>
+        <div class="panel-body">
+
+          <table class="table">
+            <tbody>
+              <tr>
+                <th:block th:each="fateCycle : ${fateCycles}">
+                  <td th:text="${fateCycle.age}" th:classappend="${fateCycle.age == activeFateCycle.age ? 'active' : ''}"></td>
+                </th:block>
+              </tr>
+              <tr>
+                <th:block th:each="fateCycle : ${fateCycles}">
+                  <td th:text="${fateCycle.stemType}" th:classappend="${fateCycle.age == activeFateCycle.age ? 'active' : ''}"></td>
+                </th:block>
+              </tr>
+              <tr>
+                <th:block th:each="fateCycle : ${fateCycles}">
+                  <td th:text="${fateCycle.branchType}" th:classappend="${fateCycle.age == activeFateCycle.age ? 'active' : ''}"></td>
+                </th:block>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+  <th:block th:each="day : ${calendarDays}">
+    <div class="col-xs-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading" th:text="${day.date}"></div>
+
+        <div class="panel-body">
+          <table class="table">
+            <tbody>
+              <tr th:replace="pillar :: lunarMethod(${day.lunarMethod}, ${chart})"></tr>
+              <tr th:replace="pillar :: pillar(${day.dayPillar}, '')"></tr>
+              <tr th:replace="pillar :: pillar(${day.monthPillar}, ${day.monthBreaker ? 'breaker' : ''})"></tr>
+              <tr th:replace="pillar :: pillar(${day.yearPillar}, ${day.yearBreaker ? 'breaker' : ''})"></tr>
+              <tr th:replace="pillar :: snippet(${day.snippet})"></tr>
+              <tr th:replace="pillar :: chiSymbol(${day.chiSymbolDetails.chiSymbol})"></tr>
+              <tr th:replace="pillar :: ruler(${day.ruler})"></tr>
+
+              <th:block th:each="hour : ${day.calendarHourPeriods}">
+                <div th:replace="pillar :: hour(${hour})"></div>
+              </th:block>
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </th:block>
+  </div>
+
+  <button class="btn btn-default" onclick="history.go(-1);">Back</button>
+</div>
+
+<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

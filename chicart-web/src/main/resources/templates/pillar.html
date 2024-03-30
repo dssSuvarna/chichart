@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<tr class="pillar" th:fragment="pillar(pillar, breaker)">
+  <th th:text="${pillar.type}" th:class="${calendarData.getCssClass(pillar)}"></th>
+  <td th:text="${pillar.stemType}" th:class="${calendarData.getCssClass(pillar.stemType)}"></td>
+  <td th:text="${pillar.branchType}" th:class="${calendarData.getCssClass(pillar.branchType)}"></td>
+  <td th:text="${breaker}"></td>
+</tr>
+
+<tr class="hour" th:fragment="hour(hour)">
+  <th th:text="${hour.hourPeriod.label}" th:class="${calendarData.getCssClass(hour.useStem ? hour.rankedStem.stemType : hour.rankedBranch.branchType)}"></th>
+  <td th:text="${hour.rankedStem.stemType}" th:class="${calendarData.getCssClass(hour.rankedStem.stemType)}"></td>
+  <td th:text="${hour.rankedBranch.branchType}" th:class="${calendarData.getCssClass(hour.rankedBranch.branchType)}"></td>
+  <td th:text="${hour.favourable}"></td>
+</tr>
+
+<tr class="snippet" th:fragment="snippet(snippet)">
+  <th>Snippet</th>
+  <th th:text="${snippet.stemCode}" th:class="${snippet.getCssClass(snippet.stemCode)}"></th>
+  <th th:text="${snippet.branchCode}" th:class="${snippet.getCssClass(snippet.branchCode)}"></th>
+</tr>
+
+<tr class="chiSymbol" th:fragment="chiSymbol(chiSymbol)">
+  <th>Symbol</th>
+  <th colspan="3" th:text="${chiSymbol}"></th>
+</tr>
+
+<tr class="lunarMethod" th:fragment="lunarMethod(lunarMethod, chart)">
+  <th>LunarMethod</th>
+  <th colspan="3" th:text="${lunarMethod.getName(chart)}"></th>
+</tr>
+
+<tr class="chiSymbol" th:fragment="ruler(ruler)">
+  <th>Ruler</th>
+  <th colspan="3" th:text="${ruler}"></th>
+</tr>
+
+</html>
